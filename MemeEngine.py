@@ -7,29 +7,23 @@ class MemeEngine():
     def __init__(self, output_dir):
         self.output_dir = output_dir
 
-    def make_meme(self, img_path, text, author, width=500) -> str:
+    def make_meme(self, img_path, body, author, width=500) -> str:
         img = Image.open(img_path)
 
         img.thumbnail((width, width))
 
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("./_fonts/LilitaOne-Regular.ttf", size=40)
+        font = ImageFont.truetype("./_fonts/LilitaOne-Regular.ttf", size=30)
         fill = "white"
 
-        wrapped_text = textwrap.wrap(text, width=30)
-        text_x = random.randint(0, max(0, width - draw.textbbox((0, 0),
-                                wrapped_text[0], font=font)[2]))
-        text_y = random.randint(0, max(0, width - draw.textbbox((0, 0),
-                                wrapped_text[0], font=font)[3]))
-        draw.text((text_x, text_y), "\n".join(wrapped_text), font=font,
-                  fill=fill)
-        author_bbox = draw.textbbox((0, 0), author, font=font)
-        author_x = random.randint(0, max(0, width - author_bbox[2]))
-        author_y = text_y + draw.textbbox((0, 0), "\n".join(wrapped_text),
-                                          font=font)[3] + 10
-        draw.text((author_x, author_y), author, font=font, fill=fill)
-        if author_y + author_bbox[3] > img.height:
-            author_y = img.height - author_bbox[3]
+        full_quote = f'{body}\n\n -{author}'
+        wrapper = textwrap.TextWrapper(width=30)
+        full_quote = wrapper.fill(text=full_quote)
+
+        x = random.randint(0, 100)
+        y = random.randint(0, 420)
+        
+        draw.text((x, y), full_quote, font=font, fill=fill)
 
         output_path = f"{self.output_dir}/meme{random.randint(0,1000000)}.jpg"
         img.save(output_path)

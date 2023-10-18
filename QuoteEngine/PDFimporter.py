@@ -20,11 +20,10 @@ class PDFimporter(IngestorInterface):
 
         file_ref = open(tmp, "r")
         quotes = []
-
         for line in file_ref.readlines():
             line = line.strip('\n\r').strip()
             if len(line) > 0:
-                parse = line.split('-')
+                parse = line.split(' - ')
                 new_quote = QuoteModel(parse[0], parse[1])
                 quotes.append(new_quote)
 

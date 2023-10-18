@@ -21,6 +21,8 @@ def setup():
     quotes = []
     for f in quote_files:
         quotes.extend(Ingestor.parse(f))
+    for quote in quotes:
+        print(quote.body,quote.author)
 
     images = "./_data/photos/dog/"
     imgs = []
@@ -38,8 +40,7 @@ def meme_rand():
     """ Generate a random meme """
     quote = random.choice(quotes)
     img = random.choice(imgs)
-    path = meme.make_meme(img, quote.body, f"- {quote.author}")
-    print(path)
+    path = meme.make_meme(img, quote.body, quote.author)
     return render_template('meme.html', path=path)
 
 
