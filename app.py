@@ -1,8 +1,7 @@
 import random
 import os
 import requests
-from flask import Flask, render_template, abort, request, redirect
-from PIL import Image, ImageDraw, ImageFont
+from flask import Flask, render_template, request
 
 from QuoteEngine.Ingestor import Ingestor
 from MemeEngine import MemeEngine
