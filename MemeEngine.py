@@ -16,7 +16,7 @@ class MemeEngine():
         font = ImageFont.truetype("./_fonts/LilitaOne-Regular.ttf", size=30)
         fill = "white"
 
-        full_quote = f'{body}\n\n -{author}'
+        full_quote = f'{body}\n -{author}'
         wrapper = textwrap.TextWrapper(width=30)
         full_quote = wrapper.fill(text=full_quote)
 

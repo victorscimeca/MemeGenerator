@@ -52,4 +52,4 @@ if __name__ == "__main__":
                         help="quote author for the image")
 
     args = parser.parse_args()
-    print(generate_meme(args.path, args.body, args.author))
+    generate_meme(args.path, args.body, args.author)

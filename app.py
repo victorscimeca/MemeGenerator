@@ -21,9 +21,7 @@ def setup():
     quotes = []
     for f in quote_files:
         quotes.extend(Ingestor.parse(f))
-    for quote in quotes:
-        print(quote.body,quote.author)
-
+    
     images = "./_data/photos/dog/"
     imgs = []
     for root, dirs, files in os.walk(images):
@@ -62,7 +60,6 @@ def meme_post():
         tmp_file.write(response.content)
 
     path = meme.make_meme(imgfile, body, author)
-    print(path)
 
     if os.path.exists(imgfile):
         os.remove(imgfile)
