@@ -34,5 +34,3 @@ MemeGenerator/
 
 ## Contact Information
 - For question or comments, please reach me at: victor.scimeca@stellantis.com 
-
-
