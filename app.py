@@ -57,10 +57,10 @@ def meme_post():
 
     try:
         response = requests.get(image, allow_redirects=True)
-        if response.status_code != 200:
-            return redirect('/create')
+        response.raise_for_status()
     except requests.exceptions.RequestException as error:
-        return redirect('/create')
+        print("An error occurred:", error)
+        return render_template('error.html')
 
     imgfile = 'tmp_image.jpg'
     with open(imgfile, 'wb') as tmp_file:
