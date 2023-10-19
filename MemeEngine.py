@@ -22,7 +22,7 @@ class MemeEngine():
 
         x = random.randint(0, 100)
         y = random.randint(0, 420)
-        
+    
         draw.text((x, y), full_quote, font=font, fill=fill)
 
         output_path = f"{self.output_dir}/meme{random.randint(0,1000000)}.jpg"

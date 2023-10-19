@@ -21,7 +21,7 @@ def setup():
     quotes = []
     for f in quote_files:
         quotes.extend(Ingestor.parse(f))
-    
+
     images = "./_data/photos/dog/"
     imgs = []
     for root, dirs, files in os.walk(images):
