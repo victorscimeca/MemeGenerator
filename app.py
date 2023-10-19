@@ -1,7 +1,7 @@
 import random
 import os
 import requests
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, abort, request, redirect
 from PIL import Image, ImageDraw, ImageFont
 
 from QuoteEngine.Ingestor import Ingestor
@@ -54,7 +54,14 @@ def meme_post():
     image = request.form.get('image_url')
     body = request.form.get('body')
     author = request.form.get('author')
-    response = requests.get(image, allow_redirects=True)
+
+    try:
+        response = requests.get(image, allow_redirects=True)
+        if response.status_code != 200:
+            return redirect('/create')
+    except requests.exceptions.RequestException as error:
+        return redirect('/create')
+
     imgfile = 'tmp_image.jpg'
     with open(imgfile, 'wb') as tmp_file:
         tmp_file.write(response.content)
